@@ -1026,7 +1026,7 @@ if __name__ == "__main__":
 
     # ---USER INPUTS--------------------------------------------------------------------------
 
-    realTimeAns = int(input('Enter "1" for Real Time Reduction or "2" for for Complete Reduction: '))
+    realTimeAns = 2 ##COMPLETE REDUCTION
     while realTimeAns != 1 and realTimeAns != 2:
         print('Sorry, did not recognize that input')
         realTimeAns = int(input('Enter "1" for Real Time Reduction or "2" for for Complete Reduction: '))
@@ -1102,12 +1102,9 @@ if __name__ == "__main__":
         print('**************************')
         print('')
 
-        fitsortext = int(input(
-            'Enter "1" to perform aperture photometry on fits files or "2" to start with pre-reduced data in a .txt format: '))
+        fitsortext = 1
 
-        fileorcommandline = int(input(
-            'How would you like to input your initial parameters? Enter "1" to use the Command Line or "2" to use an input file: '))
-
+        fileorcommandline = 1
         # Read in input file rather than using the command line
         if fileorcommandline == 2:
             print("\nYour current working directory is: ", os.getcwd())
@@ -1288,7 +1285,7 @@ if __name__ == "__main__":
             pass
 
         if fileorcommandline == 1:
-            targetName = str(input("\nEnter the Planet Name: "))
+            targetName = Qatar-1b
 
         print("\nLooking up ", targetName)
         done = False
@@ -1332,9 +1329,8 @@ if __name__ == "__main__":
         if fitsortext == 1:
             # latitude and longitude
             if fileorcommandline == 1:
-                latiStr = str(input(
-                    "Enter the latitude of where you observed (deg) (Don't forget the sign where North is '+' and South is '-'): "))
-            noSpaceLati = latiStr.replace(" ", "")
+                latiStr = "+31.68"
+                noSpaceLati = latiStr.replace(" ", "")
             latiSign = noSpaceLati[0]
             # check to make sure they have a sign
             while latiSign != '+' and latiSign != '-':
@@ -1347,9 +1343,8 @@ if __name__ == "__main__":
 
             # handle longitude
             if fileorcommandline == 1:
-                longitStr = str(input(
-                    "Enter the longitude of where you observed (deg) (Don't forget the sign where East is '+' and West is '-'): "))
-            noSpaceLongit = longitStr.replace(" ", "")
+                longitStr = "-110.88"
+                noSpaceLongit = longitStr.replace(" ", "")
             longitSign = noSpaceLongit[0]
             # check to make sure they have the sign
             while longitSign != '+' and longitSign != '-':
@@ -1361,16 +1356,15 @@ if __name__ == "__main__":
             longit = float(longitStr)
 
             if fileorcommandline == 1:
-                elevation = str(input("Enter the elevation (in meters) of where you observed: "))
+                elevation = "2616"
 
             print(' ')
             print('Locate Your Target Star')
             print('***************************************')
             if fileorcommandline == 1:
-                raStr = str(input("Enter the Ra of your target star in the form: HH:MM:SS (ignore the decimal values) : "))
-                decStr = str(input(
-                    "Enter the Dec of your target star in form: <sign>DD:MM:SS (ignore the decimal values and don't forget the '+' or '-' sign!)' : "))
-            
+                raStr = "20:13:32"
+                decStr = "+65:09:43"
+
             if fileorcommandline == 2:
                 print("Reading star positions from init file.")
 
@@ -1428,16 +1422,14 @@ if __name__ == "__main__":
 
             # ---HANDLE CALIBRATION IMAGES------------------------------------------------
             if fileorcommandline == 1:
-                cals = str(input('\nDo you have any calibration images (flats, darks or biases)? (y/n) '))
-
+                cals = "y"
             # if they have cals, handle them by calculating the median flat, dark or bias
             if cals == 'y' or cals == 'yes' or cals == 'Y' or cals == 'Yes':
 
                 # flats
                 # THIS DOES NOT ACCOUNT FOR CALIBRATING THE FLATS, WHICH COULD BE TAKEN AT A DIFFERENT EXPOSURE TIME
                 if fileorcommandline == 1:
-                    flats = str(input('\nDo you have flats? (y/n) '))
-
+                    flats = "n"
                     if flats == 'y' or flats == 'yes' or flats == 'Y' or flats == 'Yes':
                         flatsBool = True
                         flatsPath = str(input(
@@ -1478,8 +1470,7 @@ if __name__ == "__main__":
 
                 # darks
                 if fileorcommandline == 1:
-                    darks = str(input('\nDo you have darks? (y/n) '))
-
+                    darks = "y"
                     if (darks == 'y' or darks == 'yes' or darks == 'Y' or darks == 'Yes'):
                         darksBool = True
                         darksPath = str(input(
@@ -1514,7 +1505,7 @@ if __name__ == "__main__":
 
                 # biases
                 if fileorcommandline == 1:
-                    biases = str(input('\nDo you have biases? (y/n) '))
+                    biases = "n"
 
                     if biases == 'y' or biases == 'yes' or biases == 'Y' or biases == 'Yes':
                         biasesBool = True
@@ -1563,20 +1554,19 @@ if __name__ == "__main__":
 
         #Handle AAVSO Formatting
         if fileorcommandline == 1:
-            AAVSOoutput = str(input('Do you want to use the AAVSO format output? (y/n) '))
+            AAVSOoutput = "y"
             if AAVSOoutput == "none" or AAVSOoutput == "no" or AAVSOoutput == "n/a" or AAVSOoutput == "n":
                 AAVSOBool = False
             else:
                 AAVSOBool = True
                 # userNameEmails = str(input('Please enter your name(s) and email address(es) in the format: Your Name (youremail@example.com), Next Name (nextemail@example.com), etc.  '))
                 userCode = str(input('Please enter your AAVSO Observer Account Number: '))
-                secuserCode = str(input('Please enter your comma-separated secondary observer codes (or type none if only 1 observer code): '))
-                cameraType = str(input("Please enter your camera type (CCD or DSLR): "))
-                binning = str(input('Please enter your pixel binning: '))
-                exposureTime = str(input('Please enter your exposure time (seconds): ')) 
-                filterName = str(input('Please enter your filter name (typical filters can be found at https://www.aavso.org/filters): ')) 
-                obsNotes = str(input('Please enter any observing notes (seeing, weather, etc.): ')) 
-
+                secuserCode = "none"
+                cameraType = 'CCD'
+                binning = '2x2'
+                exposureTime = '60'
+                filterName = 'CV'
+                obsNotes = 'In collaboration with the Center for Astrophysics | Harvard & Smithsonian, MicroObservatory Network'
         # --------PLANETARY PARAMETERS UI------------------------------------------
         # Scrape the exoplanet archive for all of the planets of their planet
         # ask user to confirm the values that will later be used in lightcurve fit
@@ -1587,14 +1577,14 @@ if __name__ == "__main__":
         print('')
 
         if not CandidatePlanetBool:
-            print('Here are the values scraped from the NASA Exoplanet Archive for ' + pDict['pName'])
+            print('Here are the values taken from the NASA Exoplanet Archive for ' + pDict['pName'])
             print('For each planetary parameter, enter "y" if you agree and "n" if you disagree')
             targetName = pDict['pName']  # change to correct exoplanet archive name
             hostName = pDict['sName']
             # Orbital Period
             print('')
             print(targetName + ' Orbital Period (days): ' + str(pDict['pPer']))
-            agreement = input("Do you agree? (y/n) ")
+            agreement = 'y'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
@@ -1605,7 +1595,7 @@ if __name__ == "__main__":
             print('')
             print(targetName + ' Orbital Period Uncertainty (days): ' + str(pDict['pPerUnc']))
             print('Keep in mind that "1.2e-34" is the same as 1.2 x 10^-34')
-            agreement = str(input("Do you agree? (y/n) "))
+            agreement = 'y'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
@@ -1615,29 +1605,29 @@ if __name__ == "__main__":
             # Mid Transit Time
             print('')
             print(targetName + ' Published Time of Mid-Transit (BJD_UTC): ' + str(pDict['midT']))
-            agreement = str(input("Do you agree? (y/n) "))
+            agreement = 'n'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
                 timeMidTransit = pDict['midT']
             else:
-                timeMidTransit = float(input("Enter a reported Time of Mid-Transit in BJD_UTC: "))
+                timeMidTransit = 2456234.1032
 
             # Mid Transit Time Uncertainty
             print('')
             print(targetName + ' Time of Mid-Transit Uncertainty (JD): ' + str(pDict['midTUnc']))
-            agreement = str(input("Do you agree? (y/n) "))
+            agreement = 'n'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
                 ogMidTErr = pDict['midTUnc']
             else:
-                ogMidTErr = float(input("Enter the uncertainty of the Mid-Transit Time (JD): "))
+                ogMidTErr = 0.00006071
 
             # rprs
             print('')
             print(targetName + ' Ratio of Planet to Stellar Radius (Rp/Rs): ' + str(round(pDict['rprs'], 4)))
-            agreement = str(input("Do you agree? (y/n) "))
+            agreement = 'y'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
@@ -1648,7 +1638,7 @@ if __name__ == "__main__":
             # aRstar
             print('')
             print(targetName + ' Ratio of Distance to Stellar Radius (a/Rs): ' + str(pDict['aRs']))
-            agreement = str(input("Do you agree? (y/n) "))
+            agreement = 'y'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
@@ -1659,7 +1649,7 @@ if __name__ == "__main__":
             # inclination
             print('')
             print(targetName + ' Orbital Inclination (deg): ' + str(pDict['inc']))
-            agreement = str(input("Do you agree? (y/n) "))
+            agreement = 'y'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
@@ -1670,7 +1660,7 @@ if __name__ == "__main__":
             # eccentricity
             print('')
             print(targetName + ' Orbital Eccentricity: ' + str(pDict['ecc']))
-            agreement = str(input("Do you agree? (y/n) "))
+            agreement = 'y'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
@@ -1686,7 +1676,7 @@ if __name__ == "__main__":
             # stellar temperature
             print('')
             print(hostName + ' Star Effective Temperature (K): ' + str(pDict['teff']))
-            agreement = str(input("Do you agree? (y/n) "))
+            agreement = 'y'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
@@ -1697,7 +1687,7 @@ if __name__ == "__main__":
             # metallicity
             print('')
             print(hostName + ' Star Metallicity ([FE/H]): ' + str(pDict['met']))
-            agreement = str(input("Do you agree? (y/n) "))
+            agreement = 'y'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
@@ -1708,7 +1698,7 @@ if __name__ == "__main__":
             # Log g
             print('')
             print(hostName + ' Star Surface Gravity log(g) : ' + str(pDict['logg']))
-            agreement = str(input("Do you agree? (y/n) "))
+            agreement = 'y'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
@@ -1807,7 +1797,7 @@ if __name__ == "__main__":
         if fitsortext == 1:
             print('')
             print('**************************')
-            print('Starting Reduction Process')
+            print('Starting Qatar-1b Reduction Process')
             print('**************************')
 
             #########################################
