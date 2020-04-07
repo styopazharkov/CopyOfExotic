@@ -1411,7 +1411,7 @@ if __name__ == "__main__":
             if fileorcommandline == 1:
                 UIprevTPX = int(input(targetName + " X Pixel Coordinate: "))
                 UIprevTPY = int(input(targetName + " Y Pixel Coordinate: "))
-                numCompStars = int(input("How many comparison stars would you like to use? (1-10) "))
+                numCompStars = 1 #$# #int(input("How many comparison stars would you like to use? (1-10) "))
 
                 # MULTIPLE COMPARISON STARS
                 compStarList = []
@@ -1604,25 +1604,25 @@ if __name__ == "__main__":
                 ogPeriodErr = float(input("Enter the Uncertainty for the Orbital Period in days: "))
             # Mid Transit Time
             print('')
-            print(targetName + ' Published Time of Mid-Transit (BJD_UTC): ' + str(pDict['midT']))
+            print(targetName + ' Published Time of Mid-Transit (BJD_UTC): ' + str(2456234.1032)) #$#
             agreement = 'n'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
                 timeMidTransit = pDict['midT']
             else:
-                timeMidTransit = 2456234.1032
+                timeMidTransit = 2456234.1032 #$#
 
             # Mid Transit Time Uncertainty
             print('')
-            print(targetName + ' Time of Mid-Transit Uncertainty (JD): ' + str(pDict['midTUnc']))
+            print(targetName + ' Time of Mid-Transit Uncertainty (JD): ' + str(0.00006071)) #$#
             agreement = 'n'
             while agreement.lower() != 'y' and agreement.lower() != 'n':
                 agreement = str(input("Do you agree? (y/n) "))
             if agreement.lower() == 'y':
                 ogMidTErr = pDict['midTUnc']
             else:
-                ogMidTErr = 0.00006071
+                ogMidTErr = 0.00006071 #$#
 
             # rprs
             print('')
