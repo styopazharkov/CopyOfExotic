@@ -1285,7 +1285,7 @@ if __name__ == "__main__":
             pass
 
         if fileorcommandline == 1:
-            targetName = Qatar-1b
+            targetName = "Qatar-1b"
 
         print("\nLooking up ", targetName)
         done = False
