@@ -1005,7 +1005,7 @@ def realTimeReduce(i):
 if __name__ == "__main__":
     print('\n')
     print('*************************************************************')
-    print('Welcome to the EXOplanet Transit Interpretation Code (EXOTIC)')
+    print('Welcome to the EXOplanet Transit Interpretation Code (EXOTIC) QATAR-1b version')
     print("Version ",versionid)
     print('*************************************************************')
     print('')
