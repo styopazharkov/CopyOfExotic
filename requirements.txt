@@ -10,5 +10,5 @@ pymc3==3.7
 python-dateutil==2.8.0
 requests==2.21.0
 scikit-image==0.15.0
-scipy==1.3.0
+scipy==1.10.0
 Theano==1.0.4
